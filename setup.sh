@@ -12,7 +12,7 @@ then
 rm -rf /usr/local/bin/docker-machine-driver-kvm2
 fi
 
-apt autoremove 
+apt autoremove  -y 
 apt-get update -y;
 sudo apt-get install -y\
  apt-transport-https \
