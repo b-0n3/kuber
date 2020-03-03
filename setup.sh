@@ -1,7 +1,6 @@
 #!/bin/bash
 service docker stop;
 minikube stop;
-minikube remove;
 apt purge  docker-ce docker-ce-cli containerd.io qemu-kvm libvirt-daemon libvirt-daemon-system virtinst bridge-utils -y
 if [ -f "/usr/local/bin/minikube" ];then 
 	rm -rf /usr/local/bin/minikube
@@ -42,4 +41,18 @@ echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" | tee -a /etc/apt/so
  mv minikube docker-machine-driver-kvm2 /usr/local/bin/;
 echo "installing kuber [ok]"
  
+ kuber :
+git clone https://github.com/lalouabd/kuber.git; 2>&1
+
+
+while [ $? != 0 ]
+do
+echo " trying to reach github "
+git clone https://github.com/lalouabd/kuber.git; 2>&1
+done
+
+cd kuber;
+
+docker build ./srcs/pods/mysql/  -t mysql;
+
 
