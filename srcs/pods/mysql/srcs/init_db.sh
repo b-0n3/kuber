@@ -21,7 +21,9 @@ service mysql start;
 
 echo -e ${blue}"setting up database ....."${reset}
 mysql -u root -e "CREATE USER 'bone'@'' IDENTIFIED BY 'Abdelait12.';"
-mysql -u root -e "source /data.sql;"
+mysql -u root -e "CREATE DATABASE userSet;"
+#mysql -u root -e "source /data.sql;"
 mysql -u root -e "GRANT ALL PRIVILEGES ON userSet.* TO bone@; FLUSH PRIVILEGES;"
 echo -e ${cyan}"done setting up database !" ${reset}
+
 clean();
