@@ -2,7 +2,7 @@
 service docker stop;
 minikube stop;
 minikube remove;
-apt purge -y docker-ce docker-ce-cli containerd.io qemu-kvm libvirt-daemon libvirt-daemon-system virtinst bridge-utils
+apt purge  docker-ce docker-ce-cli containerd.io qemu-kvm libvirt-daemon libvirt-daemon-system virtinst bridge-utils -y
 if [-f "/usr/local/bin/minikube"];
 then 
 	rm -rf /usr/local/bin/minikube
@@ -12,7 +12,7 @@ then
 rm -rf /usr/local/bin/docker-machine-driver-kvm2
 fi
 
-apt autoremove  -y 
+apt autoremove -y ;
 apt-get update -y;
 sudo apt-get install -y\
  apt-transport-https \
