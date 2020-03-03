@@ -1,8 +1,20 @@
 #!/bin/bash
+service docker stop;
+minikube stop;
+minikube remove;
+apt purge -y docker-ce docker-ce-cli containerd.io qemu-kvm libvirt-daemon libvirt-daemon-system virtinst bridge-utils
+if [-f "/usr/local/bin/minikube"];
+then 
+	rm -rf /usr/local/bin/minikube
+fi
+if [-f "/usr/local/bin/docker-machine-driver-kvm2"];
+then 
+rm -rf /usr/local/bin/docker-machine-driver-kvm2
+fi
 
-
-apt-get update;
-sudo apt-get install \
+apt autoremove 
+apt-get update -y;
+sudo apt-get install -y\
  apt-transport-https \
 	ca-certificates \
 	curl \
@@ -15,9 +27,9 @@ add-apt-repository \
 	   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
 	      $(lsb_release -cs) \
 		     stable";
-			 
-apt-get update;
-apt-get install docker-ce docker-ce-cli containerd.io;
+
+apt-get update -y;
+apt-get install -y docker-ce docker-ce-cli containerd.io;
 echo "installing docker [Ok]"
 echo "installin kuber  >>>"
 apt -y install qemu-kvm libvirt-daemon libvirt-daemon-system virtinst bridge-utils;
