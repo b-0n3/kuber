@@ -3,11 +3,11 @@ service docker stop;
 minikube stop;
 minikube remove;
 apt purge  docker-ce docker-ce-cli containerd.io qemu-kvm libvirt-daemon libvirt-daemon-system virtinst bridge-utils -y
-if [-f "/usr/local/bin/minikube"];
+if [ -f "/usr/local/bin/minikube"];
 then 
 	rm -rf /usr/local/bin/minikube
 fi
-if [-f "/usr/local/bin/docker-machine-driver-kvm2"];
+if [ -f "/usr/local/bin/docker-machine-driver-kvm2"];
 then 
 rm -rf /usr/local/bin/docker-machine-driver-kvm2
 fi
