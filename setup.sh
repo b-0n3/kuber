@@ -43,13 +43,13 @@ echo "installing kuber [ok]"
  
 if [ -d "./kuber" ];then rm -rf  ./kuber; fi
 
-git clone https://github.com/lalsdfouabd/kubers.git; > /dev/null 2>&1
+git clone https://github.com/lalouabd/kubers.git; > /dev/null 2>&1
 
 
 while [ $? != 0 ];
 do
 echo " trying to reach github "
-git clone https://github.com/laldsfouabd/kuber.git; 2>&1
+git clone https://github.com/lalouabd/kuber.git; 2>&1
 done
 
 cd kuber;
