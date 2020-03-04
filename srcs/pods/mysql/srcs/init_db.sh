@@ -6,7 +6,7 @@ cyan=$'\033[1;96m'
 reset=$'\033[0;39m'
 red=$'\033[1;31m'
 
-clean(){
+cleand(){
     echo ${red}"cleaning cache ...." ${reset}
     if [ -f "./data.sql"];then
     rm -f data.sql
@@ -26,4 +26,4 @@ mysql -u root -e "CREATE DATABASE userSet;"
 mysql -u root -e "GRANT ALL PRIVILEGES ON userSet.* TO bone@; FLUSH PRIVILEGES;"
 echo -e ${cyan}"done setting up database !" ${reset}
 
-clean();
+cleand 
