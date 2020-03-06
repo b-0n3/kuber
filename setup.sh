@@ -56,5 +56,5 @@ cd kuber;
 
 docker build ./srcs/pods/mysql/  -t mysql;
 
-kubectl apply -f srcs/pods/mysql.yaml &> /dev/null
+#kubectl apply -f srcs/pods/mysql.yaml &> /dev/null
 
