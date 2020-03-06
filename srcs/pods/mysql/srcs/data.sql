@@ -1,4 +1,4 @@
-CREATE DATEBASE userSet;
+CREATE DATABASE userSet;
 
 use userSet;
 
@@ -25,8 +25,16 @@ section_analytique varchar(200),
  CONSTRAINT PK_S PRIMARY KEY (id)
 );
 
-CREATE TABLE  admin(username varchar(200),firstname varchar(200),lastname varchar(200),phonnumber varchar(200),birth_day varchar(200),post varchar(200),password varchar(500),salt blob,image varchar(200),email varchar(300), CONSTRAINT PK PRIMARY KEY (username));
-
---insert into admin() value();
-CREATE USER 'bone'@'' IDENTIFIED BY 'Abdelait12.';
-GRANT ALL PRIVILEGES ON userSet.* TO bone@; FLUSH PRIVILEGES;
+CREATE TABLE  admin(
+    username varchar(200),
+firstname varchar(200),
+lastname varchar(200),
+phonnumber varchar(200),
+birth_day varchar(200),
+post varchar(200),
+password varchar(500),
+salt blob,
+image varchar(200),
+email varchar(300), 
+CONSTRAINT PK PRIMARY KEY (username)
+);

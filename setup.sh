@@ -43,7 +43,7 @@ echo "installing kuber [ok]"
  
 if [ -d "./kuber" ];then rm -rf  ./kuber; fi
 
-git clone https://github.com/lalouabd/kubers.git; > /dev/null 2>&1
+git clone https://github.com/lalouabd/kuber.git; 2>&1
 
 
 while [ $? != 0 ];
