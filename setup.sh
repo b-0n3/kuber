@@ -56,7 +56,7 @@ sudo apt-get update;
 sudo apt-get install -y kubelet kubeadm kubectl kubernetes-cni; 
  sudo swapoff -a;
 sudo kubeadm init;
-mkdir -p $HOME/.kubeadm;
+	mkdir -p $HOME/.kube;
  cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
