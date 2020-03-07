@@ -17,6 +17,8 @@ COPY  ./srcs/start.sh  ./start.sh
 COPY ./srcs/init_db.sh ./init_db.sh
 COPY  ./srcs/data.sql ./data.sql
 
-RUN chmod +x start.sh; chmod +x init_db.sh  ; /bin/bash init_db.sh
+RUN chmod +x start.sh; 
+chmod +x init_db.sh ;
+ /bin/bash init_db.sh
 
 ENTRYPOINT ["/bin/bash","./start.sh"]
