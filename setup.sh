@@ -1,4 +1,4 @@
-#!/bin/bash
++#!/bin/bash
 
 if [ -d "/etc/kubernetes/" ];then
 	sudo rm -rf /etc/kubernetes
@@ -28,9 +28,9 @@ sudo add-apt-repository \
 
 ## Install Docker CE.
 sudo apt-get update && apt-get install -y \
-  containerd.io=1.2.10-3 \
-  docker-ce=5:19.03.4~3-0~ubuntu-$(lsb_release -cs) \
-  docker-ce-cli=5:19.03.4~3-0~ubuntu-$(lsb_release -cs)
+  containerd.io \
+  docker-ce \
+  docker-ce-cli
 
 # Setup daemon.
 sudo cat > /etc/docker/daemon.json <<EOF
@@ -56,10 +56,16 @@ sudo curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add
 sudo echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" > /etc/apt/sources.list.d/kubernetes.list  ;
 sudo apt-get update;
 sudo apt-get install -y kubelet kubeadm kubectl kubernetes-cni; 
+sleep 3;
  sudo swapoff -a;
+sleep 3;
 sudo kubeadm init;
-	mkdir -p $HOME/.kube;
- cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sleep 3;
+
+	mkdir -p $HOME/.kube/ ;
+
+sudo  cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 echo "installing kuber [ok]"
