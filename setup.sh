@@ -34,7 +34,7 @@ sudo apt-mark unhold kubelet kubeadm kubectl;
 
 sudo dpkg --configure -a;
 
-sudo kubeadm reset
+echo y | sudo kubeadm reset
 sudo apt-get purge kubeadm kubectl kubelet kubernetes-cni kube*   
 sudo apt-get autoremove  
 
