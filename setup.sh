@@ -6,9 +6,19 @@ if [ -d "/etc/kubernetes/" ];then
 if [ -d "/var/lib/etcd/" ];then 
 	sudo rm -rf /var/lib/etcd/ 
 fi
-if [ -d "$HOME/.kube" ];then 
-	sudo rm -rf $HOME/.kube
+if [ -d "$HOME/.kube/" ];then 
+	sudo rm -rf $HOME/.kube/
+  echo removing kube 
 fi
+
+if [ -d "/etc/systemd/system/kubelet.service.d/" ]; then 
+sudo rm -rf /etc/systemd/system/kubelet.service.d/
+fi
+if [ -d "/etc/systemd/system/docker.service.d/" ]; then 
+rm -rf /etc/systemd/system/docker.service.d/ 
+fi
+
+sudo dpkg --configure -a;
 
 sudo apt-get purge  -y containerd.io docker docker-ce kubelet kubeadm kubectl kubernetes-cni docker-ce-cli;
 sudo apt-get  autoremove -y; 
@@ -45,6 +55,7 @@ sudo cat > /etc/docker/daemon.json <<EOF
 EOF
 
 sudo mkdir -p /etc/systemd/system/docker.service.d
+
 sudo systemctl daemon-reload
 sudo systemctl restart docker
 sudo systemctl enable docker 
@@ -62,7 +73,7 @@ sleep 3;
 sudo kubeadm init;
 sleep 3;
 
-	mkdir -p $HOME/.kube/ ;
+	mkdir -p $HOME/.kube/config ;
 
 sudo  cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 
