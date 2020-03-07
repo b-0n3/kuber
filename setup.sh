@@ -20,6 +20,8 @@ if [ -d "/etc/systemd/system/docker.service.d/" ]; then
 sudo rm -rf /etc/systemd/system/docker.service.d/ 
 fi
 
+sudo apt-mark unhold kubelet kubeadm kubectl;
+
 sudo dpkg --configure -a;
 
 sudo apt-get purge  -y containerd.io docker docker-ce kubelet kubeadm kubectl kubernetes-cni docker-ce-cli;
@@ -92,9 +94,9 @@ echo "installing kuber [ok]"
 
  cd kuber;
 
- sudo docker build ./srcs/pods/mysql/  -t mysql-deployment;
-  sudo docker build ./srcs/pods/server/ -t myserver;
-  
+sudo docker build ./srcs/pods/mysql/  -t mysql-deployment;
+sudo docker build ./srcs/pods/server/ -t myserver;
+
 
 sudo kubectl apply -f srcs/pods/mysql/srcs/mysql.yaml &> /dev/null
 
