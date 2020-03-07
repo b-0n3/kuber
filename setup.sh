@@ -17,7 +17,7 @@ if [ -d "/etc/systemd/system/kubelet.service.d/" ]; then
 sudo rm -rf /etc/systemd/system/kubelet.service.d/
 fi
 if [ -d "/etc/systemd/system/docker.service.d/" ]; then 
-rm -rf /etc/systemd/system/docker.service.d/ 
+sudo rm -rf /etc/systemd/system/docker.service.d/ 
 fi
 
 sudo dpkg --configure -a;
