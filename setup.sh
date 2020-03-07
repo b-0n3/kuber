@@ -26,7 +26,7 @@ sudo apt-get purge  -y containerd.io docker docker-ce kubelet kubeadm kubectl ku
 sudo apt-get  autoremove -y; 
 sudo apt-get update -y;
 
-sudo apt-get update && apt-get install -y lsb_release apt-transport-https ca-certificates curl software-properties-common gnupg2
+sudo apt-get update && apt-get install -y  apt-transport-https ca-certificates curl software-properties-common gnupg2
 
 ### Add Docker’s official GPG key
 sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
@@ -50,7 +50,7 @@ sudo cat > /etc/docker/daemon.json <<EOF
 }
 EOF
 
-sudo mkdir -p /etc/systemd/system/docker.service.d
+#sudo mkdir -p /etc/systemd/system/docker.service.d
 
 sudo systemctl daemon-reload
 sudo systemctl restart docker
@@ -64,13 +64,13 @@ sudo echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" > /etc/apt/sou
 sudo apt-get update;
 sudo apt-get install -y kubelet kubeadm kubectl kubernetes-cni; 
 sleep 3;
- sudo swapoff -a;
+sudo swapoff -a;
 sleep 3;
 sudo systemctl daemon-reload
  sudo systemctl restart kubelet
 sudo kubeadm init;
 sleep 3;
-
+sudo apt-mark hold kubelet kubeadm kubectl;
 	mkdir -p $HOME/.kube/;
 
 sudo  cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
