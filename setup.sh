@@ -2,9 +2,11 @@
 
 if [ -d "/etc/kubernetes/" ];then
 	sudo rm -rf /etc/kubernetes
+  echo removing kubere
 	fi
 if [ -d "/var/lib/etcd/" ];then 
 	sudo rm -rf /var/lib/etcd/ 
+  echo removing etcd
 fi
 if [ -d "$HOME/.kube/" ];then 
 	sudo rm -rf $HOME/.kube/
@@ -24,23 +26,17 @@ sudo apt-get purge  -y containerd.io docker docker-ce kubelet kubeadm kubectl ku
 sudo apt-get  autoremove -y; 
 sudo apt-get update -y;
 
-sudo apt-get update && apt-get install -y \
-  apt-transport-https ca-certificates curl software-properties-common gnupg2
+sudo apt-get update && apt-get install -y lsb_release apt-transport-https ca-certificates curl software-properties-common gnupg2
 
 ### Add Docker’s official GPG key
 sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
 ### Add Docker apt repository.
-sudo add-apt-repository \
-  "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-  $(lsb_release -cs) \
-  stable"
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 
 ## Install Docker CE.
-sudo apt-get update && apt-get install -y \
-  containerd.io \
-  docker-ce \
-  docker-ce-cli
+sudo apt-get update ;
+ apt-get install -y containerd.io docker-ce docker-ce-cli ;
 
 # Setup daemon.
 sudo cat > /etc/docker/daemon.json <<EOF
@@ -73,7 +69,7 @@ sleep 3;
 sudo kubeadm init;
 sleep 3;
 
-	mkdir -p $HOME/.kube/config ;
+	mkdir -p $HOME/.kube/;
 
 sudo  cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 
