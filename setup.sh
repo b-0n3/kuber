@@ -6,7 +6,9 @@ if [ -d "/etc/kubernetes/" ];then
 if [ -d "/var/lib/etcd/" ];then 
 	sudo rm -rf /var/lib/etcd/ 
 fi
-
+if [ -d "$HOME/.kube" ];then 
+	sudo rm -rf $HOME/.kube
+fi
 
 sudo apt-get purge  -y containerd.io docker docker-ce kubelet kubeadm kubectl kubernetes-cni docker-ce-cli;
 sudo apt-get  autoremove -y; 
