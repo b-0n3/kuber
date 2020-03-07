@@ -1,9 +1,14 @@
 #!/bin/bash
 
+if [ -d "/etc/kubernetes/" ];then
+	sudo rm -rf /etc/kubernetes
+	fi
+if [ -d "/var/lib/etcd/" ];then 
+	sudo rm -rf /var/lib/etcd/ 
+fi
 
 
-
-sudo apt-get purge  -y containerd.io docker docker-ce kubelet kubeadm kubectl kubernetes-cni;
+sudo apt-get purge  -y containerd.io docker docker-ce kubelet kubeadm kubectl kubernetes-cni docker-ce-cli;
 sudo apt-get  autoremove -y; 
 sudo apt-get update -y;
 
