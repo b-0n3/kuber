@@ -1,7 +1,10 @@
 #!/bin/bash
 #sudo systemctl stop docker;
  #sudo swappon -a ;
+
+
  
+
 sudo apt-get purge  -y containerd.io docker docker-ce kubelet kubeadm kubectl kubernetes-cni;
 sudo apt-get  autoremove -y; 
 sudo apt-get update -y;
