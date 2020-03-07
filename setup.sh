@@ -50,7 +50,7 @@ sudo cat > /etc/docker/daemon.json <<EOF
 }
 EOF
 
-#sudo mkdir -p /etc/systemd/system/docker.service.d
+
 
 sudo systemctl daemon-reload
 sudo systemctl restart docker
@@ -79,9 +79,9 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 echo "installing kuber [ok]"
  
-# if [ -d "./kuber" ];then rm -rf  ./kuber; fi
+ if [ -d "./kuber" ];then rm -rf  ./kuber; fi
 
-# git clone https://github.com/lalouabd/kuber.git; 2>&1
+ git clone https://github.com/lalouabd/kuber.git; 2>&1
 
 
 # while [ $? != 0 ];
@@ -90,9 +90,11 @@ echo "installing kuber [ok]"
 # git clone https://github.com/lalouabd/kuber.git; 2>&1
 # done
 
-# cd kuber;
+ cd kuber;
 
-# docker build ./srcs/pods/mysql/  -t mysql;
+ sudo docker build ./srcs/pods/mysql/  -t mysql-deployment;
+  sudo docker build ./srcs/pods/server/ -t myserver;
+  
 
-#kubectl apply -f srcs/pods/mysql.yaml &> /dev/null
+sudo kubectl apply -f srcs/pods/mysql/srcs/mysql.yaml &> /dev/null
 
