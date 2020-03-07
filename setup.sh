@@ -66,6 +66,8 @@ sudo apt-get install -y kubelet kubeadm kubectl kubernetes-cni;
 sleep 3;
  sudo swapoff -a;
 sleep 3;
+sudo systemctl daemon-reload
+ sudo systemctl restart kubelet
 sudo kubeadm init;
 sleep 3;
 
