@@ -1,31 +1,47 @@
 #!/bin/bash
-
-if [ -d "/etc/kubernetes/" ];then
+clearn(){
+if [ -d "/etc/kubernetes/" ];
+then
 	sudo rm -rf /etc/kubernetes
   echo removing kubere
 	fi
-if [ -d "/var/lib/etcd/" ];then 
+if [ -d "/var/lib/etcd/" ];
+then 
 	sudo rm -rf /var/lib/etcd/ 
   echo removing etcd
 fi
-if [ -d "$HOME/.kube/" ];then 
+if [ -d "$HOME/.kube/" ];
+then 
 	sudo rm -rf $HOME/.kube/
   echo removing kube 
 fi
 
-if [ -d "/etc/systemd/system/kubelet.service.d/" ]; then 
+if [ -d "/etc/systemd/system/kubelet.service.d/" ]; 
+then 
 sudo rm -rf /etc/systemd/system/kubelet.service.d/
 fi
-if [ -d "/etc/systemd/system/docker.service.d/" ]; then 
+if [ -d "/etc/systemd/system/docker.service.d/" ]; 
+then 
 sudo rm -rf /etc/systemd/system/docker.service.d/ 
 fi
+if [ -d "/var/lib/docker/" ];
+then 
+sudo rm -rf /var/lib/docker/ 
+fi
+}
 
 sudo apt-mark unhold kubelet kubeadm kubectl;
 
 sudo dpkg --configure -a;
 
-sudo apt-get purge  -y containerd.io docker docker-ce kubelet kubeadm kubectl kubernetes-cni docker-ce-cli;
+sudo kubeadm reset
+sudo apt-get purge kubeadm kubectl kubelet kubernetes-cni kube*   
+sudo apt-get autoremove  
+
+sudo apt-get remove docker docker-engine docker.io containerd runc;
 sudo apt-get  autoremove -y; 
+clearn ;
+
 sudo apt-get update -y;
 
 sudo apt-get update && apt-get install -y  apt-transport-https ca-certificates curl software-properties-common gnupg2
