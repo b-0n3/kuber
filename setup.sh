@@ -28,6 +28,10 @@ if [ -d "/var/lib/docker/" ];
 then 
 sudo rm -rf /var/lib/docker/ 
 fi
+if [ -f "/etc/apt/sources.list.d/kubernetes.list" ]; 
+then 
+  sudo rm -rf /etc/apt/sources.list.d/kubernetes.lis;
+  fi
 }
 
 sudo apt-mark unhold kubelet kubeadm kubectl;
@@ -78,20 +82,20 @@ echo "installing docker [Ok]"
 echo "start setting kubdeam ..... "
 sudo chmod 777 /etc/apt/sources.list.d/;
 sudo curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add ; 
-sudo echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" > /etc/apt/sources.list.d/kubernetes.list  ;
+sudo echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" > /etc/apt/sources.list.d/kubernetes.list ;
 sudo apt-get update;
 sudo apt-get install -y kubelet kubeadm kubectl kubernetes-cni; 
-sleep 3;
+
 sudo swapoff -a;
-sleep 3;
+
 sudo systemctl daemon-reload
-sleep 6;
+
  sudo systemctl restart kubelet
- sleep 6;
+
 sudo kubeadm init;
-sleep 3;
+
 sudo apt-mark hold kubelet kubeadm kubectl;
-	mkdir -p $HOME/.kube/;
+mkdir -p $HOME/.kube/;
 
 sudo  cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 
@@ -99,7 +103,7 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 echo "installing kuber [ok]"
  
- if [ -d "./kuber" ];then rm -rf  ./kuber; fi
+ if [ -d "./kuber" ];then sudo rm -rf  ./kuber; fi
 
  git clone https://github.com/lalouabd/kuber.git; 2>&1
 
