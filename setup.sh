@@ -1,8 +1,8 @@
 #!/bin/bash
 #sudo systemctl stop docker;
- sudo swappon -a ;
-sudo apt-get purge containerd.io docker docker-ce kubelet kubeadm kubectl kubernetes-cni;
-sudo apt-get autoremove;
+ #sudo swappon -a ;
+sudo apt-get purge  -y containerd.io docker docker-ce kubelet kubeadm kubectl kubernetes-cni;
+sudo apt-get  autoremove -y; 
 sudo apt-get update -y;
 
 sudo apt-get update && apt-get install -y \
@@ -50,7 +50,7 @@ sudo apt-get install -y kubelet kubeadm kubectl kubernetes-cni;
  sudo swapoff -a;
 sudo kubeadm init;
 mkdir -p $HOME/.kubeadm;
-sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube
+ cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 echo "installing kuber [ok]"
