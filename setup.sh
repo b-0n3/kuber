@@ -69,7 +69,9 @@ sleep 3;
 sudo swapoff -a;
 sleep 3;
 sudo systemctl daemon-reload
+sleep 6;
  sudo systemctl restart kubelet
+ sleep 6;
 sudo kubeadm init;
 sleep 3;
 sudo apt-mark hold kubelet kubeadm kubectl;
