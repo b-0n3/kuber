@@ -1,4 +1,4 @@
-+#!/bin/bash
+#!/bin/bash
 
 if [ -d "/etc/kubernetes/" ];then
 	sudo rm -rf /etc/kubernetes
