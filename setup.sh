@@ -32,8 +32,15 @@ if [ -f "/etc/apt/sources.list.d/kubernetes.list" ];
 then 
   sudo rm -rf /etc/apt/sources.list.d/kubernetes.lis;
   fi
+  sudo rm -rf /var/lib/docker
 
+  sudo rm -rf /var/lib/docker /etc/docker
+sudo rm /etc/apparmor.d/docker
+sudo groupdel docker
+sudo rm -rf /var/run/docker.sock  
   for i in `sudo find / -name '*docker*'`; do sudo rm -rf $i ; done;
+
+
 }
 
 sudo apt-mark unhold kubelet kubeadm kubectl;
