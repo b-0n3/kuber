@@ -49,8 +49,8 @@ sudo dpkg --configure -a;
 
 echo y | sudo kubeadm reset
 sudo iptables  --flush;
-sudo apt-get purge kubeadm kubectl kubelet kubernetes-cni   
-sudo apt-get autoremove  
+sudo apt-get purge -y kubeadm kubectl kubelet kubernetes-cni   
+sudo apt-get autoremove  -y  
 
 sudo apt-get purge -y docker-engine docker docker.io docker-ce  
 sudo apt-get autoremove -y --purge docker-engine docker docker.io docker-ce
@@ -68,7 +68,7 @@ sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add 
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 
 ## Install Docker CE.
-sudo apt-get update ;
+sudo apt-get update -y ;
  sudo apt-get install -y containerd.io docker-ce docker-ce-cli ;
 
 # Setup daemon.
