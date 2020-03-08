@@ -64,7 +64,7 @@
 
 # sudo apt-get update -y;
 
-sudo apt-get update && apt-get install -y  apt-transport-https ca-certificates curl software-properties-common gnupg2
+sudo apt-get update && sudo apt-get install -y  apt-transport-https ca-certificates curl software-properties-common gnupg2
 
 ### Add Docker’s official GPG key
 sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
@@ -97,7 +97,7 @@ sudo systemctl enable docker
 echo "installing docker [Ok]"
 echo "start setting kubdeam ..... "
 sudo chmod 777 /etc/apt/sources.list.d/;
-sudo curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add ; 
+sudo curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add ; 
 sudo echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" > /etc/apt/sources.list.d/kubernetes.list ;
 sudo apt-get update;
 sudo apt-get install -y kubelet kubeadm kubectl kubernetes-cni; 
