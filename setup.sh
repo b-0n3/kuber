@@ -1,68 +1,65 @@
 #!/bin/bash
-# clearn(){
-# if [ -d "/etc/kubernetes/" ];
-# then
-# 	sudo rm -rf /etc/kubernetes
-#   echo removing kubere
-# 	fi
-# if [ -d "/var/lib/etcd/" ];
-# then 
-# 	sudo rm -rf /var/lib/etcd/ 
-#   echo removing etcd
-# fi
-# if [ -d "$HOME/.kube/" ];
-# then 
-# 	sudo rm -rf $HOME/.kube/
-#   echo removing kube 
-# fi
+clearn(){
+if [ -d "/etc/kubernetes/" ];
+then
+	sudo rm -rf /etc/kubernetes
+  echo removing kubere
+	fi
+if [ -d "/var/lib/etcd/" ];
+then 
+	sudo rm -rf /var/lib/etcd/ 
+  echo removing etcd
+fi
+if [ -d "$HOME/.kube/" ];
+then 
+	sudo rm -rf $HOME/.kube/
+  echo removing kube 
+fi
 
-# if [ -d "/etc/systemd/system/kubelet.service.d/" ]; 
-# then 
-# sudo rm -rf /etc/systemd/system/kubelet.service.d/
-# fi
-# if [ -d "/etc/systemd/system/docker.service.d/" ]; 
-# then 
-# sudo rm -rf /etc/systemd/system/docker.service.d/ 
-# fi
-# if [ -d "/var/lib/docker/" ];
-# then 
-# sudo rm -rf /var/lib/docker/ 
-# fi
-# if [ -f "/etc/apt/sources.list.d/kubernetes.list" ]; 
-# then 
-#   sudo rm -rf /etc/apt/sources.list.d/kubernetes.lis;
-#   fi
-#   sudo rm -rf /var/lib/docker
+if [ -d "/etc/systemd/system/kubelet.service.d/" ]; 
+then 
+sudo rm -rf /etc/systemd/system/kubelet.service.d/
+fi
+if [ -d "/etc/systemd/system/docker.service.d/" ]; 
+then 
+sudo rm -rf /etc/systemd/system/docker.service.d/ 
+fi
+if [ -d "/var/lib/docker/" ];
+then 
+sudo rm -rf /var/lib/docker/ 
+fi
+if [ -f "/etc/apt/sources.list.d/kubernetes.list" ]; 
+then 
+  sudo rm -rf /etc/apt/sources.list.d/kubernetes.lis;
+  fi
+  sudo rm -rf /var/lib/docker
 
-#   sudo rm -rf /var/lib/docker /etc/docker
-# sudo rm /etc/apparmor.d/docker
-# sudo groupdel docker
-# sudo rm -rf /var/run/docker.sock  
-
-
-
-# }
-
-# sudo apt-mark unhold kubelet kubeadm kubectl;
-
-# sudo dpkg --configure -a;
-
-# echo y | sudo kubeadm reset
-# sudo iptables  --flush;
-# sudo apt-get purge -y kubeadm kubectl kubelet kubernetes-cni   
-# sudo apt-get autoremove  -y  
-
-# sudo apt-get purge -y containerd  containerd.io docker.io docker-ce docker-engine  docker-ce-cli
-# sudo apt-get autoremove -y --purge containerd  containerd.io docker.io docker-ce docker-engine  docker-ce-cli
-# clearn ;
+  sudo rm -rf /var/lib/docker /etc/docker
+sudo rm /etc/apparmor.d/docker
+sudo groupdel docker
+sudo rm -rf /var/run/docker.sock  
 
 
-# if [ -f "/usr/bin/docker" ]
-# ;then
-    
-# fi 
 
-# sudo apt-get update -y;
+}
+
+sudo apt-mark unhold kubelet kubeadm kubectl;
+
+sudo dpkg --configure -a;
+
+echo y | sudo kubeadm reset
+sudo iptables  --flush;
+sudo apt-get purge -y kubeadm kubectl kubelet kubernetes-cni   
+sudo apt-get autoremove  -y  
+
+sudo apt-get purge -y containerd  containerd.io docker.io docker-ce docker-engine  docker-ce-cli
+sudo apt-get autoremove -y --purge containerd  containerd.io docker.io docker-ce docker-engine  docker-ce-cli
+clearn ;
+
+
+
+
+sudo apt-get update -y;
 
 sudo apt-get update && sudo apt-get install -y  apt-transport-https ca-certificates curl software-properties-common gnupg2
 
@@ -74,7 +71,7 @@ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubun
 
 ## Install Docker CE.
 sudo apt-get update -y ;
- sudo apt-get install -y containerd  containerd.io docker.io  docker docker-ce docker-engine  docker-ce-cli ;
+  sudo apt-get install -y containerd   docker.io  docker ;
 
 # Setup daemon.
 sudo cat > /etc/docker/daemon.json <<EOF
