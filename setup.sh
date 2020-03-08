@@ -39,10 +39,10 @@ sudo apt-mark unhold kubelet kubeadm kubectl;
 sudo dpkg --configure -a;
 
 echo y | sudo kubeadm reset
-sudo apt-get purge kubeadm kubectl kubelet kubernetes-cni kube*   
+sudo apt-get remove -y  kubeadm kubectl kubelet kubernetes-cni kube*   
 sudo apt-get autoremove  
 
-sudo apt-get remove docker docker-engine docker.io containerd runc;
+sudo apt-get remove -y docker docker-engine docker.io containerd runc;
 sudo apt-get  autoremove -y; 
 clearn ;
 
