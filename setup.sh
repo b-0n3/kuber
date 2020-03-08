@@ -74,7 +74,7 @@ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubun
 
 ## Install Docker CE.
 sudo apt-get update -y ;
- sudo apt-get install -y containerd  containerd.io docker.io docker-ce docker-engine  docker-ce-cli ;
+ sudo apt-get install -y containerd  containerd.io docker.io  docker docker-ce docker-engine  docker-ce-cli ;
 
 # Setup daemon.
 sudo cat > /etc/docker/daemon.json <<EOF
