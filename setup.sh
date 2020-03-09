@@ -51,11 +51,10 @@ sudo dpkg --configure -a;
 echo y | sudo kubeadm reset
 sudo iptables -F && sudo iptables -t nat -F && sudo iptables -t mangle -F && sudo iptables -X
 sudo apt-get purge -y kubeadm kubectl kubelet kubernetes-cni   
-sudo apt-get autoremove  -y  
+sudo apt-get autoremove  -y  --purge kubeadm kubectl kubelet kubernetes-cni
 
-sudo apt-get purge -y containerd  containerd.io docker.io docker-ce docker-engine  docker-ce-cli
-sudo apt-get autoremove -y --purge containerd  containerd.io docker.io docker-ce docker-engine  docker-ce-cli
-clearn ;
+sudo apt-get purge -y containerd   docker.io  docker ; 
+sudo apt-get autoremove -y --purge containerd   docker.io  docker ; 
 
 
 
@@ -109,11 +108,7 @@ sudo systemctl daemon-reload
 sudo kubeadm init;
 
 sudo apt-mark hold kubelet kubeadm kubectl;
-# mkdir -p $HOME/.kube/;
 
-# sudo  cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-
-# sudo chown $(id -u):$(id -g) $HOME/.kube/config
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
