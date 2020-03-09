@@ -43,12 +43,13 @@ sudo rm -rf /var/run/docker.sock
 
 }
 
+
 sudo apt-mark unhold kubelet kubeadm kubectl;
 
 sudo dpkg --configure -a;
 
 echo y | sudo kubeadm reset
-sudo iptables  --flush;
+sudo iptables -F && sudo iptables -t nat -F && sudo iptables -t mangle -F && sudo iptables -X
 sudo apt-get purge -y kubeadm kubectl kubelet kubernetes-cni   
 sudo apt-get autoremove  -y  
 
@@ -108,30 +109,36 @@ sudo systemctl daemon-reload
 sudo kubeadm init;
 
 sudo apt-mark hold kubelet kubeadm kubectl;
-mkdir -p $HOME/.kube/;
+# mkdir -p $HOME/.kube/;
 
-sudo  cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+# sudo  cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 
+# sudo chown $(id -u):$(id -g) $HOME/.kube/config
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
+sudo chmod 777 $HOME/.kube/config
+export KUBECONFIG=/etc/kubernetes/kubelet.conf
+export KUBECONFIG=$HOME/.kube/config
 
 echo "installing kuber [ok]"
  
- if [ -d "./kuber" ];then sudo rm -rf  ./kuber; fi
+#  if [ -d "./kuber" ];then sudo rm -rf  ./kuber; fi
 
- git clone https://github.com/lalouabd/kuber.git; 2>&1
-
-
-# while [ $? != 0 ];
-# do
-# echo " trying to reach github "
-# git clone https://github.com/lalouabd/kuber.git; 2>&1
-# done
-
- cd kuber;
-
-sudo docker build ./srcs/pods/mysql/  -t mysql-deployment;
-sudo docker build ./srcs/pods/server/ -t myserver;
+#  git clone https://github.com/lalouabd/kuber.git; 2>&1
 
 
-sudo kubectl apply -f srcs/pods/mysql/srcs/mysql.yaml &> /dev/null
+# # while [ $? != 0 ];
+# # do
+# # echo " trying to reach github "
+# # git clone https://github.com/lalouabd/kuber.git; 2>&1
+# # done
+
+#  cd kuber;
+
+# sudo docker build ./srcs/pods/mysql/  -t mysql-deployment;
+# sudo docker build ./srcs/pods/server/ -t myserver;
+
+
+# sudo kubectl apply -f srcs/pods/mysql/srcs/mysql.yaml &> /dev/null
 
