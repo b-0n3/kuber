@@ -51,10 +51,10 @@ sudo dpkg --configure -a;
 echo y | sudo kubeadm reset
 sudo iptables -F && sudo iptables -t nat -F && sudo iptables -t mangle -F && sudo iptables -X
 sudo apt-get purge -y kubeadm kubectl kubelet kubernetes-cni   
-sudo apt-get autoremove  -y  --purge kubeadm kubectl kubelet kubernetes-cni
+sudo apt-get autoremove  -y  --purge --allow-change-held-packages  kubeadm kubectl kubelet kubernetes-cnji
 
 sudo apt-get purge -y containerd   docker.io  docker ; 
-sudo apt-get autoremove -y --purge containerd   docker.io  docker ; 
+sudo apt-get autoremove -y --purge  --allow-change-held-packages  containerd   docker.io  docker ; 
 
 
 
